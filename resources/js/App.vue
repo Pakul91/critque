@@ -25,11 +25,6 @@
               <li class="hover:text-white my-auto">
                 <router-link :to="{ name: 'Search' }">Search</router-link>
               </li>
-              <li class="bg-sky-500 hover:bg-cyan-400 rounded-full">
-                <router-link :to="{ name: 'Login' }"
-                  ><div class="px-5 py-1">Login</div></router-link
-                >
-              </li>
             </ul>
           </nav>
         </div>
