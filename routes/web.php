@@ -23,6 +23,8 @@ use App\Http\Controllers\Admin\MoviesController;
 Route::prefix('admin')->group(function () {
 
     Route::get('/', [MoviesController::class, 'index']);
+    Route::post('/', [MoviesController::class, 'import']);
+    Route::get('/movies', [MoviesController::class, 'movies']);
     
 });
 

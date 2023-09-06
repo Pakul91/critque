@@ -37,7 +37,7 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 import Cookie from "js-cookie";
 
-const auth = ref({ email: "", password: "" });
+const auth = ref({ email: "pakulniewicz.t@gmail.com", password: "password" });
 const router = useRouter();
 const errorMessage = ref("");
 const processing = ref(false);
@@ -57,7 +57,6 @@ const login = async () => {
 
 const addTokenCookie = (token) => {
   if (!token) return;
-
   Cookie.set("token", token);
 };
 </script>
