@@ -8,14 +8,7 @@
           >Movies</span
         >
       </div>
-      <Movie
-        v-for="movie in recentMovies"
-        :key="movie.id"
-        :title="movie.title"
-        :tagline="movie.tagline"
-        :id="movie.id"
-        :numOfReviews="movie.review_count"
-      />
+      <Movie v-for="movie in recentMovies" :key="movie.id" :movie="movie" />
     </div>
 
     <div class="mx-auto max-w-screen-lg px-3 py-6">

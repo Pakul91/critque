@@ -9,8 +9,10 @@
             class="w-full flex flex-col flex-wrap items-center gap-y-2 md:flex-row md:justify-between"
           >
             <p class="text-xl font-semibold">
-              {{ movie.title }} / {{ movie.reviews_count }} Reviews
+              {{ movie.title }}
             </p>
+            <MovieAverageRating class="md:ml-4" :movieData="movie" />
+
             <button
               type="button"
               class="ml-auto mr-2 shrink-0 rounded-full bg-gradient-to-br from-sky-500 to-cyan-400 px-3 py-1 text-sm font-medium hover:from-sky-700 hover:to-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600/50"
@@ -34,7 +36,8 @@
             v-for="review in movie.reviews"
           >
             <div class="text-gray-200">
-              {{ review.review }}
+              <StarRating :rating="review.rating" :size="3" />
+              <p class="mt-3">{{ review.review }}</p>
             </div>
           </div>
         </div>
@@ -53,6 +56,8 @@
 
 <script setup>
 import ReviewForm from "../components/ReviewForm.vue";
+import MovieAverageRating from "../components/MovieAverageRating.vue";
+import StarRating from "../components/StarRating.vue";
 
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";

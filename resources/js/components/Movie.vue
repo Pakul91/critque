@@ -1,28 +1,30 @@
 <template>
   <div class="movie w-full flex rounded-md bg-slate-800 p-3 mb-4">
-    <div class="w-full">
+    <div class="w-full flex flex-col justify-center md:justify-start">
       <router-link
-        class="hover:text-cyan-400 float-left"
-        :to="{ name: 'Movie', params: { id: props.id } }"
+        class="hover:text-cyan-400 flex justify-center md:justify-start"
+        :to="{ name: 'Movie', params: { id: movie.id } }"
       >
-        <p class="text-xl font-semibold">{{ props.title }}</p>
-        <p v-if="tagline" class="mt-3 text-gray-400">{{ props.tagline }}</p>
+        <p class="text-xl font-semibold">{{ movie.title }}</p>
       </router-link>
-      <div class="float-right">
-        <span href="" class="text-xl font-semibold"
-          >{{ props.numOfReviews }} Reviews</span
-        >
-      </div>
+      <MovieAverageRating :movieData="movie" />
+      <p
+        v-if="movie.tagline"
+        class="mt-3 text-gray-400 text-center md:text-left"
+      >
+        {{ movie.tagline }}
+      </p>
     </div>
   </div>
 </template>
 
 <script setup>
+import MovieAverageRating from "./MovieAverageRating.vue";
 const props = defineProps({
-  id: Number,
-  title: String,
-  tagline: String,
-  numOfReviews: Number,
+  movie: {
+    type: Object,
+    required: true,
+  },
 });
 </script>
 

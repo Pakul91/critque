@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col bg-slate-900 text-gray-100">
     <header class="bg-darkblue py-6">
-      <div class="container mx-auto">
+      <div class="container mx-auto px-3">
         <div class="flex justify-between items-center">
           <a
             href="/"

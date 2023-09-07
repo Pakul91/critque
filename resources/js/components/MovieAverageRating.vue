@@ -1,11 +1,12 @@
 <template>
   <div class="flex items-center justify-center md:justify-start">
     <StarRating :rating="movieData.average_rating" :size="3" />
-    <div class="text-xs">
+    <div v-if="movieData.reviews_count" class="text-xs">
       Based on
       <span class="text-sky-500">{{ movieData.reviews_count }}</span>
       {{ movieData.reviews_count === 1 ? "review" : "reviews" }}
     </div>
+    <div v-else class="text-xs">No reviews yet</div>
   </div>
 </template>
 
