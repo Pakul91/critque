@@ -14,7 +14,7 @@
       </div>
 
       <p v-if="formError" class="mb-4 text-lg text-red-400 sm:text-xl">
-        Something went wrong, please try again later.
+        {{ formError }}
       </p>
 
       <p class="mb-4 text-lg sm:text-xl">
@@ -45,10 +45,14 @@
         </div>
       </div>
       <div class="mb-4">
-        <p class="mb-4">Write a review!</p>
+        <p :class="{ 'mb-4': !reviewError }">Write a review!</p>
+        <p v-if="reviewError" class="m-0 p-0 text-sm text-red-400">
+          {{ reviewError }}
+        </p>
         <textarea
           placeholder="Share your deepest thoughts..."
           v-model="review"
+          @input="reviewError = false"
           class="w-full h-32 sm:h-48 border border-gray-300 text-slate-800 rounded-md resize-none p-2 focus:outline-none placeholder:text-sm"
         ></textarea>
       </div>
@@ -77,12 +81,13 @@ const props = defineProps({
   title: String,
 });
 
-const emit = defineEmits(["closeForm"]);
+const emit = defineEmits(["closeForm", "reviewAdded"]);
 
 const activeStar = ref(0);
 const hoveredStar = ref(0);
 const starsError = ref(false);
 const review = ref("");
+const reviewError = ref(false);
 const formError = ref(false);
 
 const onStarClicked = (index) => {
@@ -105,9 +110,11 @@ const submitForm = async () => {
 
   try {
     await axios.post("/api/reviews", data);
+
+    emit("reviewAdded");
     emit("closeForm");
   } catch (error) {
-    formError.value = true;
+    formError.value = error.response?.data?.message;
   }
 };
 
@@ -116,6 +123,17 @@ const validate = () => {
 
   if (activeStar.value === 0) {
     starsError.value = true;
+    valid = false;
+  }
+
+  if (review.value === "") {
+    reviewError.value = "Please write a review";
+    valid = false;
+  } else if (review.value.length < 2) {
+    reviewError.value = "Please write a longer review";
+    valid = false;
+  } else if (review.value.length > 500) {
+    reviewError.value = "Please write a shorter review";
     valid = false;
   }
 

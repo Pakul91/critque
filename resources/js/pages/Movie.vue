@@ -46,6 +46,7 @@
       :id="movie.id"
       :title="movie.title"
       @closeForm="closeReviewForm"
+      @reviewAdded="onReviewAdded"
     />
   </div>
 </template>
@@ -58,7 +59,7 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 const movie = ref({});
-const showForm = ref(true);
+const showForm = ref(false);
 
 onMounted(() => {
   const id = route.params.id;
@@ -76,5 +77,9 @@ const openReviewForm = () => {
 
 const closeReviewForm = () => {
   showForm.value = false;
+};
+
+const onReviewAdded = () => {
+  getMovie(route.params.id);
 };
 </script>
