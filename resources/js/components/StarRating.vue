@@ -24,6 +24,7 @@ import ReviewStarHalf from "./ReviewStarHalf.vue";
 const props = defineProps({
   rating: {
     type: Number,
+    default: 0,
   },
   size: {
     type: Number,

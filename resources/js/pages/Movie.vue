@@ -27,7 +27,7 @@
           </div>
 
           <div
-            class="hover:text-cyan-400 text-xl font-semibold border-b border-cyan-400 pb-2 mb-4"
+            class="hover:text-cyan-400 text-xl font-semibold border-b border-cyan-400 pb-2 mb-4 user-select-none"
           >
             Reviews
           </div>

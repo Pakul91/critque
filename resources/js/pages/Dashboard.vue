@@ -41,7 +41,6 @@ const recentReviews = ref([]);
 onMounted(async () => {
   const moviesResponse = await axios.get("/api/movies/recent");
   recentMovies.value = moviesResponse.data.movies;
-  console.log("recentMovies", recentMovies.value);
 
   const reviewsResponse = await axios.get("/api/reviews/recent");
   recentReviews.value = reviewsResponse.data.reviews;

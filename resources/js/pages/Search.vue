@@ -5,7 +5,7 @@
       @submit.prevent="sendSearch"
     >
       <input
-        class="w-full appearance-none bg-slate-800 focus:outline-none"
+        class="w-full appearance-none bg-slate-800 focus:outline-none border-none focus:border-none"
         type="text"
         v-model="searchTerm"
       />
@@ -26,22 +26,48 @@
       </div>
     </div>
     <div class="w-full flex flex-col gap-6 mt-8">
-      <Movie v-for="result in searchResults" :key="result.id" :movie="result" />
+      <Movie
+        v-for="result in resultsToDisplay"
+        :key="result.id"
+        :movie="result"
+      />
+    </div>
+
+    <div v-if="searchResults.length && searchResults.length > resultsPerPage">
+      <Pagination
+        :items="searchResults.length"
+        :itemsPerPage="resultsPerPage"
+        @pageChange="onPageChange"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import Movie from "../components/Movie.vue";
+import Pagination from "../components/Pagination.vue";
 
 const searchTerm = ref("");
 const searchResults = ref([]);
+
+const currentPage = ref(1);
+const resultsPerPage = 5;
+
+const resultsToDisplay = computed(() => {
+  const start = (currentPage.value - 1) * resultsPerPage;
+  const end = start + resultsPerPage;
+  return searchResults.value.slice(start, end);
+});
 
 const sendSearch = async () => {
   const { data } = await axios.post("/api/movies/search", {
     searchParam: searchTerm.value,
   });
-  searchResults.value.push(...data);
+  searchResults.value = [...data];
+};
+
+const onPageChange = (page) => {
+  currentPage.value = page;
 };
 </script>

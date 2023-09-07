@@ -50,7 +50,6 @@ const login = async () => {
     router.push({ name: "Dashboard" });
   } catch (error) {
     const { response } = error;
-    console.log(response, "RESPONSE");
     errorMessage.value = response.data.message;
   }
 };

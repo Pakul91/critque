@@ -5,7 +5,9 @@
         class="hover:text-cyan-400 flex justify-center md:justify-start"
         :to="{ name: 'Movie', params: { id: movie.id } }"
       >
-        <p class="text-xl font-semibold">{{ movie.title }}</p>
+        <p class="text-xl text-center md:text-left font-semibold">
+          {{ movie.title }}
+        </p>
       </router-link>
       <MovieAverageRating :movieData="movie" />
       <p
