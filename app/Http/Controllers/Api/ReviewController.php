@@ -79,7 +79,7 @@ class ReviewController extends Controller
      */
     public function recent()
     {
-        $reviews = Review::orderBy('created_at', 'desc')->limit(5)->get();
+        $reviews = Review::orderBy('created_at', 'desc')->limit(5)->with('movie:id,title')->get();
         return response()->json(['reviews' => $reviews]);
     }
 }

@@ -10,6 +10,7 @@ class Movie extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'tagline', 'overview', 'release_date'];
+    protected $appends = ['average_rating', 'reviews_count'];
 
     public function moviesLists()
     {
@@ -19,5 +20,15 @@ class Movie extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        return round($this->reviews()->avg('rating'),1);
+    }
+
+    public function getReviewsCountAttribute()
+    {
+        return $this->reviews()->count();
     }
 }

@@ -38,9 +38,10 @@
           >
             <ReviewStarFull
               id="full"
+              class="h-6"
               v-if="activeStar >= index + 1 || hoveredStar >= index + 1"
             />
-            <ReviewStarEmpty id="empty" v-else />
+            <ReviewStarEmpty id="empty" class="h-6" v-else />
           </div>
         </div>
       </div>
