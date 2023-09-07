@@ -30,6 +30,15 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'movie_id' => 'required|integer',
+            'rating' => 'required|integer',
+            'review' => 'required|string|min:2|max:500',
+        ]);
+
+        $review = Review::create($validated);
+
+        return response()->json(['review' => $review]);
 
     }
 
