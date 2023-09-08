@@ -17,7 +17,7 @@ $ git clone https://github.com/Pakul91/critque.git
 ```
 
 ```
-$ cd ascensor-full-stack-test-2023
+$ cd critque
 ```
 
 ```
