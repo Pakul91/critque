@@ -25,7 +25,7 @@
                 @endforeach
         </table>
    
-        <div class="mx-auto pb-10 h-8 w-full text-white">
+        <div id="paginator" class="fixed w-full bottom-0 pb-6 px-3 pt-2 left-0 bg-slate-900 justify-center">
             {{$movies->links()}}
         </div>
     </div>
@@ -34,6 +34,12 @@
         There are currently no movies saved. 
     </div>
     @endif
+
+    <script>
+        // Little hack to style built in paginator
+       const paginator = document.querySelector('#paginator ');
+       paginator?.firstElementChild?.children[1].classList.add('flex-col', 'gap-2');
+    </script>
 
 
    

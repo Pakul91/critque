@@ -3,15 +3,16 @@
     <div class="pr-2" v-for="(star, index) in Array(5)" :key="index">
       <ReviewStarHalf
         id="half"
-        :class="`h-${size || 6}`"
+        class="h-3"
+        :class="starSize"
         v-if="rating > index + 1 && rating < index + 2"
       />
       <ReviewStarFull
         id="full"
-        :class="`h-${size || 6}`"
+        :class="starSize"
         v-else-if="rating >= index + 1"
       />
-      <ReviewStarEmpty id="empty" :class="`h-${size || 6}`" v-else />
+      <ReviewStarEmpty id="empty" :class="starSize" v-else />
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@
 import ReviewStarEmpty from "./ReviewStarEmpty.vue";
 import ReviewStarFull from "./ReviewStarFull.vue";
 import ReviewStarHalf from "./ReviewStarHalf.vue";
+import { computed } from "vue";
 
 const props = defineProps({
   rating: {
@@ -29,6 +31,10 @@ const props = defineProps({
   size: {
     type: Number,
   },
+});
+
+const starSize = computed(() => {
+  return `h-${props.size}`;
 });
 </script>
 

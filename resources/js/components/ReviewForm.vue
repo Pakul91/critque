@@ -5,7 +5,7 @@
   >
     <div
       id="modal"
-      class="container max-w-xl flex flex-col bg-slate-800 w-10/12 p-3 md:p-6 rounded-md"
+      class="container max-w-xl flex flex-col text-center md:text-left bg-slate-800 w-10/12 p-3 md:p-6 rounded-md"
     >
       <div class="flex w-full justify-end mb-1">
         <div class="w-6 cursor-pointer" @click="closeForm">
@@ -27,7 +27,7 @@
         <p v-if="starsError" class="m-0 p-0 text-sm text-red-400">
           At least one... please...
         </p>
-        <div class="flex ml-2">
+        <div class="flex ml-2 justify-center md:justify-start">
           <div
             class="pr-2"
             v-for="(star, index) in Array(5)"
